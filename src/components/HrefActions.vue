@@ -50,6 +50,11 @@ import AuthUtils from './auth/utils';
 import { Asset } from 'stac-js';
 import { browserProtocols } from 'stac-js/src/http';
 
+export const noDownloadMediaTypes = [
+  "application/vnd+zarr",
+  "application/vnd+zarr; version=2; profile=multiscales"
+];
+
 let i = 0;
 
 export default {
@@ -142,7 +147,7 @@ export default {
       return this.isAsset && this.canShow && !this.shown;
     },
     hasDownloadButton() {
-      return this.isAsset && this.isBrowserProtocol;
+      return this.isAsset && this.isBrowserProtocol && !(noDownloadMediaTypes.includes(this.data?.type));
     },
     downloadEvents() {
       if (this.hasDownloadButton && this.useAltDownloadMethod) {
