@@ -1,7 +1,7 @@
 module.exports = {
     catalogUrl: null,
     catalogTitle: "STAC Browser",
-    catalogImage: null,
+    catalogImage: "https://raw.githubusercontent.com/EOPF-Sample-Service/eopf-stac/main/thumbnails/EOPF-on-dark.png",
     allowExternalAccess: true, // Must be true if catalogUrl is not given
     allowedDomains: [],
     detectLocaleFromBrowser: true,
