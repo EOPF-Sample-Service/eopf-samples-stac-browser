@@ -41,12 +41,12 @@
     "password": "Contraseña",
     "required": "Se necesita autenticación",
     "schemeTypes": {
-      "apiKey": "Llave de API",
       "http": "HTTP {scheme}",
-      "oauth2": "OAuth 2",
-      "openIdConnect": "OpenID Connect",
       "s3": "S3",
-      "signedUrl": "URL Firmada"
+      "signedUrl": "URL Firmada",
+      "oauth2": "OAuth 2",
+      "apiKey": "Llave de API",
+      "openIdConnect": "OpenID Connect"
     },
     "title": "Autenticación",
     "unauthorized": "No tiene permiso para acceder a estos datos. Por favor, inicie sesión.",
@@ -86,7 +86,6 @@
   },
   "description": "Descripción",
   "errors": {
-    "apiListRequested": "La petición es inválida. Actualmente no se soportan las peticiones directas a /collections o .../items.",
     "authFailed": "La petición falló, puede que los datos de autenticación sean incorrectos",
     "badRequest": "La petición es inválida. Esto puede deberse a parámetros incorrectos, por ejemplo, en la búsqueda, o puede ser un bug en STAC Browser.",
     "contactProvider": "Por favor contacte al proveedor de servicio para resolver este problema.",
@@ -109,15 +108,10 @@
     "noExternalAccess": "¡El acceso a catálogos externos no está permitido!",
     "notFound": "El recurso solicitado no existe. @:errors.contactProvider",
     "serverError": "El servidor encontró un problema. @:errors.contactProvider",
-    "title": "Error",
     "unauthorized": "La petición no tiene credenciales, por ejemplo, un token de la API. Por favor introduzca sus credenciales y pruebe de nuevo."
   },
   "featureExperimental": "¡Esta funcionalidad es experimental y puede producir resultados inesperados!",
-  "features": {
-    "empty": "No hay elementos disponibles.",
-    "noProperties": "No se enviaron propiedades.",
-    "title": "Elemento | Elementos"
-  },
+  "features": {},
   "fullscreen": {
     "exit": "Salir de pantalla completa",
     "exitLabel": "✕",
@@ -141,7 +135,6 @@
   "in": "en {catalog}",
   "index": {
     "api": "API",
-    "catalog": "Catálogo",
     "load": "Cargar",
     "selectStacIndex": "... o seleccione uno de {stacIndex}:",
     "specifyCatalog": "Por favor especifique un catálogo o una API STAC...",
@@ -160,38 +153,13 @@
   "map": "Mapa",
   "mapping": {
     "attribution": {
-      "collapseLabel": "✕",
-      "description": "Atribuciones",
-      "label": "i"
+      "label": "i",
+      "collapseLabel": "✕"
     },
-    "bboxSelect": {
-      "add": "Haz clic en el mapa para añadir un rectángulo delimitador.",
-      "eastLon": "Longitud Este",
-      "error": {
-        "incomplete": "Coordenada faltante",
-        "invalidLat": "Debe estar entre -90 y 90",
-        "invalidLon": "Debe estar entre -180 y 180",
-        "latOrder": "Latitud Sur debe ser menor que Latitud Norte",
-        "lonOrder": "Longitud Oeste debe ser menor que Longitud Este"
-      },
-      "northLat": "Latitud Norte",
-      "remove": "Haz clic dentro del rectángulo para eliminarlo.",
-      "southLat": "Latitud Sur",
-      "westLon": "Longitud Oeste"
-    },
+    "bboxSelect": {},
     "close": "Cerrar",
-    "fit": "Encajar en la extensión",
-    "layers": {
-      "base": "Capas base",
-      "footprint": "Huella",
-      "title": "Capas",
-      "unnamed": "Sin nombre #{id}"
-    },
-    "location": {
-      "description": "Ve a tu ubicación"
-    },
-    "nobasemap": "No hay mapas base disponibles.",
-    "nodata": "No hay información espacial en los metadatos.",
+    "layers": {},
+    "location": {},
     "zoom": {
       "in": {
         "description": "Acercar el zoom",
@@ -254,23 +222,9 @@
   "search": {
     "addCollections": "Presione enter para añadir una colección",
     "addFilter": "Añadir filtro",
-    "additionalFilters": "Filtros adicionales",
     "addItemIds": "Presione enter para añadir el ID de un elemento",
     "addSearchTerm": "Presione Enter para añadir un término de búsqueda",
-    "arrayInput": {
-      "addValue": "Presiona enter para añadir un valor",
-      "helpText": "Introduce valor(es)"
-    },
-    "arrayContains": "Contiene todos",
-    "arrayContainsDescription": "El arreglo contiene todos los valores especificados",
-    "arrayContainedBy": "Es un subconjunto de",
-    "arrayContainedByDescription": "El arreglo es un subconjunto de",
-    "arrayEquals": "Coincide exactamente",
-    "arrayEqualsDescription": "El arreglo coincide con los valores especificados (mismos elementos, cualquier orden)",
-    "arrayOverlaps": "Contiene cualquiera",
-    "arrayOverlapsDescription": "El arreglo contiene al menos uno de los valores especificados",
-    "between": "entre",
-    "betweenOperatorDescription": "Prueba si el valor de un campo numérico está dentro del rango indicado. El rango es inclusivo.",
+    "additionalFilters": "Filtros adicionales",
     "dateDescription": "Todas las horas en Coordinated Universal Time (UTC).",
     "enterCollections": "Introduzca una o varias colecciones...",
     "enterItemIds": "Introduzca una o varias IDs de Elemento...",
@@ -282,8 +236,6 @@
     "freeTextDescription": "Buscar al menos uno de los términos proporcionados en campos como el título y la descripción.",
     "greaterThan": "mayor que",
     "greaterThanEqual": "igual o mayor que",
-    "in": "incluido en",
-    "inOperatorDescription": "Comprueba si el valor del campo es alguno de los valores indicados.",
     "itemIds": "IDs de Elementos",
     "itemsPerPage": "Elementos por página",
     "itemsPerPageDescription": "Número de elementos solicitados por página, máx. {maxItems} elementos.",
@@ -292,22 +244,19 @@
     "likeOperatorDescription": "Puede usar carácteres comodín. `_` representa un solo carácter, `%` representa cualquier número de carácteres. Para buscar por un carácter comodín en específico, necesita añadir `\\` antes del carácter.",
     "logical": {
       "and": "Coincidencia con todos los filtros (and)",
-      "or": "Coincidencia con algún filtro (or)",
-      "not": "Negar filtro"
+      "or": "Coincidencia con algún filtro (or)"
     },
     "matches": "coincidencia",
     "metaDescription": "Buscar en los datos ofrecidos por {title}.",
     "modifyCriteria": "Por favor modifique los criterios de búsqueda.",
     "noFurtherItemsFound": "No hay más elementos disponibles.",
     "noItemsFound": "No se encontró ningún elemento para los filtros seleccionados.",
-    "noOperatorsError": "STAC Browser no soporta ningún operador para el filtro {queryable}.",
     "noOptions": "Aún no se ha introducido nada",
     "notEqualTo": "no igual a",
     "notFullySupported": "Puede que no todas las opciones estén soportadas.",
     "notSupported": "La API no soporta la Búsqueda por Elementos.",
     "placeholder": "Búsqueda...",
     "selectCollections": "Seleccione una o varias colecciones...",
-    "selectDateRange": "Seleccionar el rango de fechas",
     "selectForItemSearch": "Seleccionar para Búsqueda de Elementos",
     "spatialExtent": "Extensión espacial",
     "tabs": {
@@ -356,8 +305,8 @@
       "message": "{title} está disponible en {url}",
       "sharePageWithOthers": "Comparta la URL de está página donde guste:",
       "title": "Compartir",
-      "withOthers": "Comparta esta página con otros",
-      "x": "X (Twitter)"
+      "x": "X (Twitter)",
+      "withOthers": "Comparta esta página con otros"
     },
     "stacExtension": "Extensión STAC",
     "stacVersion": "Versión STAC",

@@ -1,22 +1,19 @@
 <template>
-  <component :is="component" class="stac-link" :id="id" :title="tooltip" v-bind="attributes">
-    <img v-if="icon && !hideIcon" :src="icon.getAbsoluteUrl()" :alt="icon.title" :title="icon.title" class="icon me-2">
+  <component :is="component" class="stac-link" v-bind="attributes" :id="id" :title="tooltip">
+    <img v-if="icon && !hideIcon" :src="icon.getAbsoluteUrl()" :alt="icon.title" :title="icon.title" class="icon mr-2">
     <span class="title">{{ displayTitle }}</span>
   </component>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
 import { mapState, mapGetters } from 'vuex';
-import { BButton } from 'bootstrap-vue-next';
 import { stacBrowserNavigatesTo } from "../rels";
-import { isObject, size } from 'stac-js/src/utils.js';
-import { isStacMediaType } from 'stac-js/src/mediatypes.js';
+import Utils from '../utils';
 import { getDisplayTitle } from '../models/stac';
 import { STAC } from 'stac-js';
-import { URI } from 'stac-js/src/utils.js';
+import URI from 'urijs';
 
-export default defineComponent({
+export default {
   name: "StacLink",
   props: {
     data: {
@@ -90,7 +87,7 @@ export default defineComponent({
       if (this.stac) {
         return true;
       }
-      if (!isStacMediaType(this.link.type, true)) {
+      if (!Utils.isStacMediaType(this.link.type, true)) {
         return false;
       }
       if (!this.allowExternalAccess && this.isExternalUrl(this.link.href)) {
@@ -104,7 +101,7 @@ export default defineComponent({
           to: this.href,
           rel: this.link.rel
         };
-        if (isObject(this.button)) {
+        if (Utils.isObject(this.button)) {
           Object.assign(obj, this.button);
         }
         return obj;
@@ -116,7 +113,7 @@ export default defineComponent({
           rel: this.link.rel,
         };
         if (this.id) {
-          // Add tab index when an ID is given for popovers to make it clickable on MacOS (#655)
+          // Add tab index when an ID is given for popoversto make it clickable on MacOS (#655)
           obj.tabindex = 0;
         }
         return obj;
@@ -124,7 +121,7 @@ export default defineComponent({
     },
     component() {
       if (this.button) {
-        return BButton;
+        return 'b-button';
       }
       return this.isStacBrowserLink ? 'router-link' : 'a';
     },
@@ -137,13 +134,12 @@ export default defineComponent({
         else {
           href = this.toBrowserPath(this.link.href);
         }
-        // Normalize to start with a slash for router-link navigation
         if (!href.startsWith('/')) {
-          href = '/' + (href || '');
+          href = '/' + href;
         }
 
         // Add private query parameters to links: https://github.com/radiantearth/stac-browser/issues/142
-        if (size(this.privateQueryParameters) > 0 || size(this.state) > 0) {
+        if (Utils.size(this.privateQueryParameters) > 0 || Utils.size(this.state) > 0) {
           let uri = URI(href);
           let addParameters = (obj, prefix) => {
             for(let key in obj) {
@@ -176,8 +172,8 @@ export default defineComponent({
   },
   methods: {
     isLink(o) {
-      return isObject(o) && !(o instanceof STAC);
+      return Utils.isObject(o) && !(o instanceof STAC);
     }
   }
-});
+};
 </script>

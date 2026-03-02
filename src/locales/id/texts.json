@@ -41,12 +41,12 @@
     "password": "Kata Sandi",
     "required": "Autentikasi diperlukan",
     "schemeTypes": {
-      "apiKey": "Kunci API",
       "http": "HTTP {scheme}",
-      "oauth2": "OAuth 2",
-      "openIdConnect": "OpenID Connect",
       "s3": "S3",
-      "signedUrl": "URL Tertanda"
+      "signedUrl": "URL Tertanda",
+      "oauth2": "OAuth 2",
+      "apiKey": "Kunci API",
+      "openIdConnect": "OpenID Connect"
     },
     "title": "Autentikasi",
     "unauthorized": "Anda tidak memiliki izin untuk mengakses data ini. Silakan masuk.",
@@ -133,7 +133,6 @@
   "in": "dalam {catalog}",
   "index": {
     "api": "API",
-    "catalog": "Katalog",
     "load": "Muat",
     "selectStacIndex": "... atau pilih satu dari {stacIndex}:",
     "specifyCatalog": "Silakan tentukan Katalog atau API STAC...",
@@ -152,9 +151,7 @@
   "map": "Peta",
   "mapping": {
     "attribution": {},
-    "bboxSelect": {
-      "error": {}
-    },
+    "bboxSelect": {},
     "layers": {},
     "location": {},
     "zoom": {
@@ -213,10 +210,9 @@
   "search": {
     "addCollections": "Tekan enter untuk menambahkan koleksi",
     "addFilter": "Tambah filter",
-    "additionalFilters": "Filter tambahan",
     "addItemIds": "Tekan enter untuk menambahkan ID Item",
     "addSearchTerm": "Tekan enter untuk menambahkan istilah pencarian",
-    "arrayInput": {},
+    "additionalFilters": "Filter tambahan",
     "dateDescription": "Semua waktu dalam Coordinated Universal Time (UTC).",
     "enterCollections": "Masukkan satu atau lebih ID Koleksi...",
     "enterItemIds": "Masukkan satu atau lebih ID Item...",
@@ -297,8 +293,8 @@
       "message": "{title} tersedia di {url}",
       "sharePageWithOthers": "Bagikan URL halaman ini di mana pun Anda suka:",
       "title": "Bagikan",
-      "withOthers": "Bagikan halaman ini dengan orang lain",
-      "x": "X (Twitter)"
+      "x": "X (Twitter)",
+      "withOthers": "Bagikan halaman ini dengan orang lain"
     },
     "stacExtension": "Ekstensi STAC",
     "stacVersion": "Versi STAC",

@@ -9,7 +9,7 @@
           <ul>
             <li v-for="(conf, uri) in classes" :key="uri" :title="uri">
               {{ conf.title }}
-              <b-badge v-if="conf.version" pill variant="secondary" class="ms-1">{{ conf.version }}</b-badge>
+              <b-badge v-if="conf.version" pill variant="secondary" class="ml-1">{{ conf.version }}</b-badge>
             </li>
           </ul>
         </dd>
@@ -20,8 +20,8 @@
       <dl v-for="(group, key) in stats" :key="key">
         <dt>
           {{ group.label }}
-          <b-badge pill variant="primary" class="ms-1">{{ group.count }}</b-badge>
-          <b-badge v-if="group.version" pill variant="secondary" class="ms-1">{{ group.version }}</b-badge>
+          <b-badge pill variant="primary" class="ml-1">{{ group.count }}</b-badge>
+          <b-badge v-if="group.version" pill variant="secondary" class="ml-1">{{ group.version }}</b-badge>
         </dt>
         <dd class="charts">
           <StatsChart v-if="group.extensions" type="extensions" :data="group.extensions" :count="group.count" />
@@ -37,13 +37,12 @@
 import { formatKey } from "@radiantearth/stac-fields/helper";
 import { mapGetters, mapState } from "vuex";
 import Url from './Url.vue';
-import { isObject, size } from 'stac-js/src/utils.js';
-import { defineAsyncComponent } from 'vue';
+import Utils from "../utils";
 
 export default {
   name: "RootStats",
   components: {
-    StatsChart: defineAsyncComponent(() => import('./metadata/StatsChart.vue')),
+    StatsChart: () => import('./metadata/StatsChart.vue'),
     Url
   },
   computed: {
@@ -69,7 +68,7 @@ export default {
         obj[confClass.type][uri] = confClass;
       }
       for (let key in obj) {
-        if (size(obj[key]) === 0) {
+        if (Utils.size(obj[key]) === 0) {
           delete obj[key];
         }
       }
@@ -80,14 +79,14 @@ export default {
         return null;
       }
       let stats = {
-        'stats:catalogs': { label: this.$t('stacCatalog', 2) },
-        'stats:collections': { label: this.$t('stacCollection', 2) },
-        'stats:items': { label: this.$t('stacItem', 2) }
+        'stats:catalogs': { label: this.$tc('stacCatalog', 2) },
+        'stats:collections': { label: this.$tc('stacCollection', 2) },
+        'stats:items': { label: this.$tc('stacItem', 2) }
       };
       for (let key in stats) {
-        if (isObject(this.root[key])) {
+        if (Utils.isObject(this.root[key])) {
           let entry = Object.assign(stats[key], this.root[key]);
-          if (size(entry['versions']) === 1) {
+          if (Utils.size(entry['versions']) === 1) {
             entry.version = Object.keys(entry['versions'])[0];
             delete entry.versions;
           }
@@ -96,7 +95,7 @@ export default {
           delete stats[key];
         }
       }
-      return size(stats) > 0 ? stats : null;
+      return Utils.size(stats) > 0 ? stats : null;
     }
   },
   methods: {
@@ -144,13 +143,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../theme/variables.scss";
-
 #stac-browser .root-stats {
-  h4 {
-    margin-top: $block-margin;
-  }
-
   .charts .chart {
     max-height: 300px;
   }

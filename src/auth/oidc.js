@@ -1,13 +1,13 @@
 import BrowserStorage from "../browser-store";
 import Auth from "./index";
-import { hasText } from 'stac-js/src/utils.js';
+import Utils from "../utils";
 
 import { UserManager } from 'oidc-client-ts';
 
 export default class OIDC extends Auth {
 
-  constructor(router, options, changeListener) {
-    super(router, options, changeListener);
+  constructor(options, changeListener, router) {
+    super(options, changeListener, router);
 
     const oidcConfig = {
       authority: options.openIdConnectUrl.replace('/.well-known/openid-configuration', ''),
@@ -26,12 +26,12 @@ export default class OIDC extends Auth {
   }
 
   setOriginalUri() {
-    this.browserStorage.set('oidc-original-uri', this.router.currentRoute.value.fullPath);
+    this.browserStorage.set('oidc-original-uri', this.router?.currentRoute?.fullPath || window.location.href);
   }
 
   restoreOriginalUri() {
     let originalUri = this.browserStorage.get('oidc-original-uri');
-    if (this.router && hasText(originalUri)) {
+    if (this.router && Utils.hasText(originalUri)) {
       if (originalUri.startsWith('/auth/logout')) {
         originalUri = '/';
       }

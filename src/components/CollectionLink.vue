@@ -1,6 +1,6 @@
 <template>
   <section v-if="collection" class="parent-collection card-list mb-4">
-    <h2>{{ $t('stacCollection', 1) }}</h2>
+    <h2>{{ $tc('stacCollection') }}</h2>
     <Catalog :catalog="collection" :showThumbnail="showThumbnail" />
   </section>
 </template>
@@ -8,7 +8,7 @@
 <script>
 import Catalog from './Catalog.vue';
 import { mapGetters } from 'vuex';
-import { isObject } from 'stac-js/src/utils.js';
+import Utils from '../utils';
 
 export default {
   name: "CollectionLink",
@@ -35,7 +35,7 @@ export default {
     link: {
       immediate: true,
       handler(newLink) {
-        if (isObject(newLink)) {
+        if (Utils.isObject(newLink)) {
           this.$store.dispatch("load", { url: newLink.href, omitApi: true });
         }
       }

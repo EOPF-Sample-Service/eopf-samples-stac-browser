@@ -41,12 +41,12 @@
     "password": "Parola",
     "required": "Autentificare necesară",
     "schemeTypes": {
-      "apiKey": "Cheie API",
       "http": "HTTP {scheme}",
-      "oauth2": "OAuth 2",
-      "openIdConnect": "OpenID Connect",
       "s3": "S3",
-      "signedUrl": "URL Semnat"
+      "signedUrl": "URL Semnat",
+      "oauth2": "OAuth 2",
+      "apiKey": "Cheie API",
+      "openIdConnect": "OpenID Connect"
     },
     "title": "Autentificare",
     "unauthorized": "Nu aveți permisiuni să accesați aceste date. Autentificare necesară.",
@@ -157,18 +157,16 @@
   "map": "Hartă",
   "mapping": {
     "attribution": {
-      "collapseLabel": "✕",
-      "label": "i"
+      "label": "i",
+      "collapseLabel": "✕"
     },
-    "bboxSelect": {
-      "error": {}
-    },
+    "bboxSelect": {},
     "close": "Închidere",
     "layers": {
-      "base": "Straturi de bază",
-      "footprint": "Amprentă la sol",
       "title": "Straturi",
-      "unnamed": "Fără nume #{id}"
+      "base": "Straturi de bază",
+      "unnamed": "Fără nume #{id}",
+      "footprint": "Amprentă la sol"
     },
     "location": {
       "description": "Mergi la locație"
@@ -236,10 +234,9 @@
   "search": {
     "addCollections": "Apăsați Enter pentru a adăuga o colecție",
     "addFilter": "Adăugați un filtru",
-    "additionalFilters": "Filtre suplimentare",
     "addItemIds": "Apăsați Enter pentru a adăuga un ID de articol",
     "addSearchTerm": "Apăsați enter pentru a adăuga un termen de căutare",
-    "arrayInput": {},
+    "additionalFilters": "Filtre suplimentare",
     "dateDescription": "Toate orele sunt timp universal coordonat (UTC).",
     "enterCollections": "Introduceți una sau mai multe colecții...",
     "enterItemIds": "Introduceți unul sau mai multe ID-uri de articol...",
@@ -320,8 +317,8 @@
       "message": "{title} este disponibil la adresa {url}",
       "sharePageWithOthers": "Partajați URL-ul acestei pagini cu alții:",
       "title": "Partajare",
-      "withOthers": "Partajați această pagină",
-      "x": "X (Twitter)"
+      "x": "X (Twitter)",
+      "withOthers": "Partajați această pagină"
     },
     "stacExtension": "Extensie STAC",
     "stacVersion": "Versiune STAC",

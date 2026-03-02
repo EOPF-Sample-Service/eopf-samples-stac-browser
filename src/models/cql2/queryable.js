@@ -1,10 +1,10 @@
 import { formatKey } from "@radiantearth/stac-fields/helper";
 import i18n from '../../i18n.js';
-import { CqlEqual, CqlGreaterThan, CqlGreaterThanEqual, CqlLessThan, CqlLessThanEqual, CqlNotEqual, CqlBetween, CqlLike } from "./operators/comparison";
-import { CqlIn, CqlArrayOverlaps, CqlArrayContains, CqlArrayEquals, CqlArrayContainedBy } from "./operators/array";
-import { isObject } from "stac-js/src/utils.js";
+import { CqlEqual, CqlGreaterThan, CqlGreaterThanEqual, CqlLessThan, CqlLessThanEqual, CqlNotEqual } from "./operators/comparison";
+import { CqlLike } from "./operators/advanced";
 
 export default class Queryable {
+
   constructor(id, schema) {
     this.id = id;
     this.schema = schema;
@@ -19,13 +19,13 @@ export default class Queryable {
 
   get description() {
     if (this.isTemporal) {
-      return i18n.global.t('search.dateDescription');
+      return i18n.t('search.dateDescription');
     }
     return "";
   }
 
   get supported() {
-    return this.isText || this.isNumeric || this.isBoolean || this.isArray;
+    return this.isText || this.isNumeric || this.isBoolean;
   }
 
   is(type) {
@@ -60,27 +60,6 @@ export default class Queryable {
     return this.isDate || this.isDateTime;
   }
 
-  get isArray() {
-    return this.is('array');
-  }
-
-  get arrayItems() {
-    // Detect the type(s) of the items in the array based on the JSON Schema.
-    // JSON Schema allows a variety of ways to specify both "items" and "types".
-    // We cater only for the most common cases here, which are:
-    // items: object
-    // type: omitted, array of strings, a single string
-    if (this.isArray && isObject(this.schema.items)) {
-      if (typeof this.schema.items.type === 'string') {
-        return [this.schema.items.type];
-      }
-      else if (Array.isArray(this.schema.items.type)) {
-        return this.schema.items.type;
-      }
-    }
-    return [];
-  }
-
   get defaultValue() {
     if (typeof this.schema.default !== 'undefined') {
       return this.schema.default;
@@ -93,7 +72,7 @@ export default class Queryable {
     }
     else if (this.isNumeric) {
       if (typeof this.schema.minimum !== 'undefined') {
-        return this.schema.minimum;
+       return this.schema.minimum;
       }
       return 0;
     }
@@ -102,9 +81,6 @@ export default class Queryable {
     }
     else if (this.isBoolean) {
       return false;
-    }
-    else if (this.isArray) {
-      return [];
     }
     return null;
   }
@@ -120,9 +96,8 @@ export default class Queryable {
   }
 
   getOperators(cql) {
-    const ops = [];
-
-    if (!this.isDateTime && !this.isArray) {
+    let ops = [];
+    if (!this.isDateTime) {
       // Although it is supported, comparing specific instances in time doesn't give predictable results.
       // For example 2020-01-01T00:00:00Z is not equal to 2020-01-01T00:00:00.001Z and you don't know the granularity
       // of the datetimes in the database. In the end you usually don't get what you are looking for.
@@ -130,30 +105,15 @@ export default class Queryable {
       ops.push(CqlEqual);
       ops.push(CqlNotEqual);
     }
-
     if (this.isNumeric || this.isTemporal) {
       ops.push(CqlLessThan);
       ops.push(CqlLessThanEqual);
       ops.push(CqlGreaterThan);
       ops.push(CqlGreaterThanEqual);
     }
-    if (this.isNumeric && cql.advancedComparison) {
-      ops.push(CqlBetween);
-      ops.push(CqlIn);
-    }
-    if (this.isText && cql.advancedComparison) {
+    else if (this.isText && cql.advancedComparison) {
       ops.push(CqlLike);
-      ops.push(CqlIn);
     }
-
-    // Array operators for array-type queryables
-    if (this.isArray && cql.arrayOperators) {
-      ops.push(CqlArrayOverlaps);
-      ops.push(CqlArrayContains);
-      ops.push(CqlArrayEquals);
-      ops.push(CqlArrayContainedBy);
-    }
-
     return ops;
   }
 
@@ -164,4 +124,5 @@ export default class Queryable {
   toJSON() {
     return { property: this.id };
   }
+
 }

@@ -41,12 +41,12 @@
     "password": "Senha",
     "required": "Autenticação requerida",
     "schemeTypes": {
-      "apiKey": "Chave da API",
       "http": "HTTP {scheme}",
-      "oauth2": "OAuth 2",
-      "openIdConnect": "OpenID Connect",
       "s3": "S3",
-      "signedUrl": "URL Assinada"
+      "signedUrl": "URL Assinada",
+      "oauth2": "OAuth 2",
+      "apiKey": "Chave da API",
+      "openIdConnect": "OpenID Connect"
     },
     "title": "Autenticação",
     "unauthorized": "Você não tem permissão para acessar esses dados. Por favor, faça login.",
@@ -159,22 +159,21 @@
   "map": "Mapa",
   "mapping": {
     "attribution": {
-      "collapseLabel": "✕",
+      "label": "i",
       "description": "Créditos",
-      "label": "i"
+      "collapseLabel": "✕"
     },
     "bboxSelect": {
       "add": "Clique no mapa para adicionar um retângulo envolvente.",
-      "error": {},
       "remove": "Clique no retângulo envolvente para removê-lo."
     },
     "close": "Fechar",
     "fit": "Ajustar à extensão",
     "layers": {
-      "base": "Mapas de Fundo",
-      "footprint": "Footprint",
       "title": "Camadas",
-      "unnamed": "Sem nome #{id}"
+      "base": "Mapas de Fundo",
+      "unnamed": "Sem nome #{id}",
+      "footprint": "Footprint"
     },
     "location": {
       "description": "Ir para sua localização"
@@ -243,10 +242,9 @@
   "search": {
     "addCollections": "Pressione Enter para adicionar uma coleção",
     "addFilter": "Adicionar filtro",
-    "additionalFilters": "Filtros adicionais",
     "addItemIds": "Pressione Enter para adicionar um ID de item",
     "addSearchTerm": "Pressione Enter para adicionar um termo de pesquisa",
-    "arrayInput": {},
+    "additionalFilters": "Filtros adicionais",
     "dateDescription": "Todos os horários em Tempo Universal Coordenado (UTC).",
     "enterCollections": "Insira um ou mais IDs de coleção...",
     "enterItemIds": "Insira um ou mais IDs de item...",
@@ -327,8 +325,8 @@
       "message": "{title} está disponível em {url}",
       "sharePageWithOthers": "Compartilhe a URL desta página onde quiser:",
       "title": "Compartilhar",
-      "withOthers": "Compartilhe esta página com outros",
-      "x": "X (Twitter)"
+      "x": "X (Twitter)",
+      "withOthers": "Compartilhe esta página com outros"
     },
     "stacExtension": "Extensão STAC",
     "stacVersion": "Versão STAC",

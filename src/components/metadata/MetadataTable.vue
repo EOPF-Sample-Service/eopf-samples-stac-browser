@@ -1,7 +1,8 @@
 <template>
   <b-table
     class="metadata-table" :items="tblItems" :fields="tblFields" variant="light"
-    responsive small sticky-header striped
+    responsive small
+    sticky-header striped
     v-bind="tblTexts"
   >
     <template #head()="data">
@@ -15,18 +16,17 @@
 </template>
 
 <script>
+import { BTable } from 'bootstrap-vue';
 import EntryMixin from './EntryMixin';
 import StacFieldsMixin from '../StacFieldsMixin';
-import { isObject } from 'stac-js/src/utils.js';
+import Utils from '../../utils';
 import { format } from '@radiantearth/stac-fields';
-import { defineAsyncComponent } from 'vue';
-import { BTable } from 'bootstrap-vue-next';
 
 export default {
   name: 'MetadataTable',
   components: {
-    Histogram: defineAsyncComponent(() => import('./Histogram.vue')),
-    BTable
+    BTable,
+    Histogram: () => import('./Histogram.vue')
   },
   mixins: [
     EntryMixin,
@@ -43,7 +43,7 @@ export default {
       };
     },
     tblItems() {
-      if (isObject(this.value)) {
+      if (Utils.isObject(this.value)) {
         let items = [];
         for(let key in this.value) {
           items.push({
@@ -69,7 +69,7 @@ export default {
           default: col.default
         });
       }
-      if (isObject(this.value)) {
+      if (Utils.isObject(this.value)) {
         fields.unshift({
           key: '_id',
           sortable: true,
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     isObject(value) {
-      return isObject(value);
+      return Utils.isObject(value);
     },
     formatCell(value, key, item) {
       let spec = this.items[key];

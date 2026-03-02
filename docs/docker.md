@@ -1,6 +1,6 @@
 # Docker
 
-Note: Docker might not be an ideal way to deploy STAC Browser in production. Consider using a web host, cloud storage, or a CDN.
+Note: Docker might not be an ideal way to deploy STAC Browser in production. Consider using a web host, cloud storage, or a CDN. 
 
 ## Create a custom image
 
@@ -51,7 +51,7 @@ STAC browser is now available at `http://localhost:8080/browser`
 
 Since version 3.1.1, you can add an existing image from [Packages](https://github.com/radiantearth/stac-browser/pkgs/container/stac-browser) to your docker-compose.yml:
 
-```yaml
+```
 services:
   stac-browser:
     image: ghcr.io/radiantearth/stac-browser:latest
@@ -72,7 +72,7 @@ So, essentially, in the end you get an nginx instance that serves static files.
 
 1. [Dockerfile](../Dockerfile) - contains information on how to build the image.
 2. [docker/default.conf](../docker/default.conf) - nginx configuration template, where `<pathPrefix>` is replaced during build.
-3. [docker/docker-entrypoint.sh](../docker/docker-entrypoint.sh) - a start script to read the passed variables and produce the `runtime-config.js` file.
+3. [docker/docker-entrypoint.sh](../docker/docker-entrypoint.sh) - a start script to read the passed variables and produce the `config.js` file.
 
 ## FAQ
 
@@ -82,4 +82,4 @@ You can not. You need to build your own image because `pathPrefix` is a build-on
 
 > How do I specify `buildTileUrlTemplate` via docker env?
 
-You can not. Consider modifying the dockerfile and using a custom `config.js` file (or `runtime-config.js` for runtime configuration)
+You can not. Consider modifying the dockerfile and using a custom `config.js` file

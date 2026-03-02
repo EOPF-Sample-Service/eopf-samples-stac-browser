@@ -31,15 +31,12 @@
   "goToCollection": {},
   "goToParent": {},
   "index": {
-    "catalog": "Catalogue",
     "specifyCatalog": "Please specify a STAC Catalogue or API..."
   },
   "items": {},
   "mapping": {
     "attribution": {},
-    "bboxSelect": {
-      "error": {}
-    },
+    "bboxSelect": {},
     "layers": {},
     "location": {},
     "zoom": {
@@ -58,7 +55,6 @@
   },
   "read": {},
   "search": {
-    "arrayInput": {},
     "logical": {},
     "tabs": {}
   },

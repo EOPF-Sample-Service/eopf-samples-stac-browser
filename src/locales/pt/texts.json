@@ -41,12 +41,12 @@
     "password": "Password",
     "required": "Autenticação necessária",
     "schemeTypes": {
-      "apiKey": "Chave da API",
       "http": "HTTP {scheme}",
-      "oauth2": "OAuth 2",
-      "openIdConnect": "OpenID Connect",
       "s3": "S3",
-      "signedUrl": "URL Assinado"
+      "signedUrl": "URL Assinado",
+      "oauth2": "OAuth 2",
+      "apiKey": "Chave da API",
+      "openIdConnect": "OpenID Connect"
     },
     "title": "Autenticação",
     "unauthorized": "Não tem autorização para aceder a estes dados. Por favor, faça login.",
@@ -135,7 +135,6 @@
   "in": "em {catalog}",
   "index": {
     "api": "API",
-    "catalog": "Catálogo",
     "load": "Carregar",
     "selectStacIndex": "... ou selecione um de {stacIndex}:",
     "specifyCatalog": "Por favor especifique um catálogo STAC ou API...",
@@ -154,12 +153,10 @@
   "map": "Mapa",
   "mapping": {
     "attribution": {
-      "collapseLabel": "✕",
-      "label": "i"
+      "label": "i",
+      "collapseLabel": "✕"
     },
-    "bboxSelect": {
-      "error": {}
-    },
+    "bboxSelect": {},
     "close": "Fechar",
     "layers": {},
     "location": {},
@@ -225,10 +222,9 @@
   "search": {
     "addCollections": "Pressione Enter para adicionar uma coleção",
     "addFilter": "Adicionar filtro",
-    "additionalFilters": "Filtros adicionais",
     "addItemIds": "Pressione Enter para adicionar o ID de um item",
     "addSearchTerm": "Pressione Enter para adicionar um termo de pesquisa",
-    "arrayInput": {},
+    "additionalFilters": "Filtros adicionais",
     "dateDescription": "Todos os horários em UTC.",
     "enterCollections": "Insira um ou mais IDs de coleção...",
     "enterItemIds": "Insira um ou mais IDs de item...",
@@ -309,8 +305,8 @@
       "message": "{title} está disponível em {url}",
       "sharePageWithOthers": "Partilhe o URL desta página onde quiser:",
       "title": "Partilhar",
-      "withOthers": "Partilhe esta página com outros",
-      "x": "X (Twitter)"
+      "x": "X (Twitter)",
+      "withOthers": "Partilhe esta página com outros"
     },
     "stacExtension": "Extensão STAC",
     "stacVersion": "Versão STAC",

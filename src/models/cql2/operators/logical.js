@@ -1,5 +1,5 @@
-import i18n from '../../../i18n.js';
-import CqlOperator from './operator.js';
+//import i18n from '../../../i18n.js';
+import CqlOperator from './operator';
 
 export default class CqlLogicalOperator extends CqlOperator {
 
@@ -29,14 +29,6 @@ export class CqlAnd extends CqlLogicalOperator {
     super(CqlAnd.SYMBOL, args);
   }
 
-  static get label() {
-    return "∧";
-  }
-
-  static get longLabel() {
-    return i18n.global.t('search.logical.and');
-  }
-
 }
 
 export class CqlOr extends CqlLogicalOperator {
@@ -47,14 +39,6 @@ export class CqlOr extends CqlLogicalOperator {
     super(CqlOr.SYMBOL, args);
   }
 
-  static get label() {
-    return "∨";
-  }
-
-  static get longLabel() {
-    return i18n.global.t('search.logical.or');
-  }
-
 }
 
 export class CqlNot extends CqlLogicalOperator {
@@ -63,14 +47,6 @@ export class CqlNot extends CqlLogicalOperator {
 
   constructor(arg = null) {
     super(CqlNot.SYMBOL, arg ? [arg] : null);
-  }
-
-  static get label() {
-    return "¬";
-  }
-
-  static get longLabel() {
-    return i18n.global.t('search.logical.not');
   }
 
 }

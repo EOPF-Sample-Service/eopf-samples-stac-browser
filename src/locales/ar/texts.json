@@ -41,12 +41,12 @@
     "password": "كلمة المرور",
     "required": "المصادقة مطلوبة",
     "schemeTypes": {
-      "apiKey": "مفتاح API",
       "http": "HTTP {scheme}",
-      "oauth2": "OAuth 2",
-      "openIdConnect": "OpenID Connect",
       "s3": "S3",
-      "signedUrl": "عنوان URL موقّع"
+      "signedUrl": "عنوان URL موقّع",
+      "oauth2": "OAuth 2",
+      "apiKey": "مفتاح API",
+      "openIdConnect": "OpenID Connect"
     },
     "title": "المصادقة",
     "unauthorized": "ليس لديك إذن للوصول إلى هذه البيانات. يرجى تسجيل الدخول.",
@@ -133,7 +133,6 @@
   "in": "في {catalog}",
   "index": {
     "api": "واجهة برمجة التطبيقات",
-    "catalog": "الكتالوج",
     "load": "تحميل",
     "selectStacIndex": "... أو اختر واحدًا من {stacIndex}:",
     "specifyCatalog": "يرجى تحديد كتالوج STAC أو API...",
@@ -152,9 +151,7 @@
   "map": "الخريطة",
   "mapping": {
     "attribution": {},
-    "bboxSelect": {
-      "error": {}
-    },
+    "bboxSelect": {},
     "layers": {},
     "location": {},
     "zoom": {
@@ -213,10 +210,9 @@
   "search": {
     "addCollections": "اضغط على Enter لإضافة مجموعة",
     "addFilter": "إضافة فلتر",
-    "additionalFilters": "فلاتر إضافية",
     "addItemIds": "اضغط على Enter لإضافة معرّف عنصر",
     "addSearchTerm": "اضغط على Enter لإضافة مصطلح بحث",
-    "arrayInput": {},
+    "additionalFilters": "فلاتر إضافية",
     "dateDescription": "جميع الأوقات بتوقيت UTC (التوقيت العالمي المنسق).",
     "enterCollections": "أدخل معرّف مجموعة واحد أو أكثر...",
     "enterItemIds": "أدخل معرّف عنصر واحد أو أكثر...",
@@ -297,8 +293,8 @@
       "message": "{title} متاح على {url}",
       "sharePageWithOthers": "مشاركة رابط هذه الصفحة في أي مكان تريده:",
       "title": "مشاركة",
-      "withOthers": "مشاركة هذه الصفحة مع الآخرين",
-      "x": "إكس (تويتر)"
+      "x": "إكس (تويتر)",
+      "withOthers": "مشاركة هذه الصفحة مع الآخرين"
     },
     "stacExtension": "امتداد STAC",
     "stacVersion": "إصدار STAC",

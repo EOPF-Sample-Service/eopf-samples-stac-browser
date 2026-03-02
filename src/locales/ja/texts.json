@@ -116,7 +116,6 @@
   "in": "{catalog} 内",
   "index": {
     "api": "API",
-    "catalog": "カタログ",
     "load": "読み込み",
     "selectStacIndex": "または {stacIndex} から選択:",
     "specifyCatalog": "STACカタログやSTAC APIのURLを指定:",
@@ -134,9 +133,7 @@
   "map": "マップ",
   "mapping": {
     "attribution": {},
-    "bboxSelect": {
-      "error": {}
-    },
+    "bboxSelect": {},
     "close": "閉じる",
     "layers": {},
     "location": {},
@@ -202,10 +199,9 @@
   "search": {
     "addCollections": "Enterキーを押してコレクションを追加",
     "addFilter": "フィルターを追加",
-    "additionalFilters": "追加のフィルター",
     "addItemIds": "Enterキーを押してアイテムIDを追加",
     "addSearchTerm": "Enter キーを押して検索語句を追加",
-    "arrayInput": {},
+    "additionalFilters": "追加のフィルター",
     "dateDescription": "すべての時刻はUTC (協定世界時) です",
     "enterCollections": "1つ以上のコレクションIDを入力してください...",
     "enterItemIds": "1つ以上のアイテムIDを入力してください...",
@@ -284,8 +280,8 @@
       "message": "{title} はこちらのページで利用できます: {url}",
       "sharePageWithOthers": "このページのURLを共有しましょう:",
       "title": "共有",
-      "withOthers": "このページを共有しましょう",
-      "x": "X (Twitter)"
+      "x": "X (Twitter)",
+      "withOthers": "このページを共有しましょう"
     },
     "statistics": "統計",
     "title": "ソースデータ",

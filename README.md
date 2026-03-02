@@ -8,7 +8,7 @@ implemented as a single page application (SPA) for ease of development and to
 limit the overall number of catalog reads necessary when browsing (as catalogs
 may be nested and do not necessarily contain references to their parents).
 
-Version: **5.0.0-dev** (supports all STAC versions between 0.6.0 and 1.1.0)
+Version: **4.0.1** (supports all STAC versions between 0.6.0 and 1.1.0)
 
 This package has also been published to npm as [`@radiantearth/stac-browser`](https://www.npmjs.com/package/@radiantearth/stac-browser).
 
@@ -40,6 +40,7 @@ If you care about STAC Browser and have some funds to support the future of STAC
     - [Custom extensions](#custom-extensions)
   - [Docker](#docker)
   - [Contributing](#contributing)
+    - [Adding a new language](#adding-a-new-language)
   - [Sponsors](#sponsors)
 
 ## Examples
@@ -116,8 +117,8 @@ The following table shows the major differences between versions and the upcomin
 | Version   | Summary |
 | --------- | ------- |
 | 3.3.x     | The last version that uses Leaflet as mapping library. |
-| 4.0.x     | Uses OpenLayers as mapping library. The last version based on VueJS 2, vue-cli and Bootstrap 4. |
-| **5.x.x** | The upcoming version based on VueJS 3, Vite and Bootstrap 5. Target: Q1 2026 |
+| **4.0.x** | Current version. Uses OpenLayers as mapping library. The last version based on VueJS 2, vue-cli and Bootstrap 4. |
+| 5.x.x     | The upcoming version based on VueJS 3, Vite and Bootstrap 5. Target: Q1 2026 |
 | 6.x.x     | Planned version with a new layout, a pluggable interface, and better integration into existing sites. Target: Q4 2026 |
 
 For more details on our plans, please check our
@@ -300,7 +301,43 @@ You can use the Docker to work with STAC Browser. Please read [Docker documentat
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to contribute to STAC Browser.
+We are happy to review and accept Pull Requests.
+STAC Browser is following the [STAC code of conduct](https://github.com/radiantearth/stac-spec/blob/master/CODE_OF_CONDUCT.md).
+
+STAC Browser uses [Vue](https://vuejs.org/) and [vue-cli](https://cli.vuejs.org/), so you need a recent version of [NodeJS and npm](https://nodejs.org/en/) installed.
+
+You can run the following commands (see also "[Get started](#get-started)" above):
+
+- `npm run install`: Install the dependencies, this is required once at the beginning.
+- `npm start`: Start the development server
+- `npm run lint`: Lint the source code files
+- `npm run build`: Compile the source code into deployable files for the web. The resulting files can be found in the folder `dist` and you can then deploy STAC Browser on a web host. There are two other variants:
+  - `npm run build:report`: Same as above, but also generates a bundle size report (see `dist/report.html`), which should not be deployed.
+  - `npm run build:minimal`: Same as above, but tries to generate a minimal version without bundle size report and without source maps.
+- `npm run i18n:fields`: Generates an updated version of the locales from the stac-fields package.
+
+The [release process is documented separately](docs/release.md).
+
+### Adding a new language
+
+You can translate STAC Browser into other languages.
+You can also use one of the existing languages and provide an alternate version for a specifc country, e.g. a Australian English (en-AU) version of the US-English language pack (en).
+
+**Please follow this guide:**
+
+- Copy the `en` folder (or any other language without a country code that you want to base the translation on).
+  - Note: If you start with the `en` folder, you have to remove the leading `//` from the line `// { fields: require('./fields.json') }` in the file `default.js`.
+- Name the new folder according to [RFC5646](https://www.rfc-editor.org/rfc/rfc5646).
+- Add the language to the list of supported locales ([`supportedLocales`](docs/options.md#supportedlocales)) in the `config.js` file.
+- Add the language to the [list of languages in this README file](#languages).
+- Add yourself to the list of code owners (`.github/CODEOWNERS`) for this language (we'll invite you to this repository after you've opened a PR). **Persons contributing languages are expected to maintain them long-term! If you are not able to maintain the language pack, please indicate so in the PR and we'll release it separately.**
+- Translate the `.json` files, most importantly `config.json`, `fields.json` and `texts.json`.
+  - Please note that you never need to translate any object keys!
+  - If you base your language on another existing language (e.g. create `en-IN` based on `en`) you can delete individual files and import existing files from other languages in `default.js`.
+- Adapt the `datepicker.js`, `duration.js` and `validation.js` files to import the existing definitions from their corresponding external packages, but you could also define the specifics yourself.
+- Check that your translation works by running the development server (`npm start`) and navigating to the STAC Browser instance in your browser (usually `http://localhost:8080`).
+- Once completed, please open a pull request and we'll get back to you as soon as possible.
+- After merging the PR for the first time, we'll add you to our translation management tool Crowdin: <https://crowdin.com/project/stac-browser/>. Please get in touch to get your invite!
 
 ## Sponsors
 

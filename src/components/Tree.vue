@@ -1,5 +1,5 @@
 <template>
-  <ul class="tree" v-visible="load">
+  <ul class="tree" v-b-visible="load">
     <li>
       <b-button v-if="pagination" size="sm" variant="light" disabled>
         <b-icon-three-dots />
@@ -12,9 +12,9 @@
       </template>
       <b-button v-else size="sm" variant="light" :to="to">
         <b-icon-file-earmark-richtext />
-      </b-button><!--
+      </b-button>
       
-      --><b-button size="sm" variant="light" :class="{path: onPath || active}" :disabled="!to && !active" :to="to" @click="onClick">
+      <b-button size="sm" variant="light" :class="{path: onPath || active}" :disabled="!to && !active" :to="to" @click="onClick">
         {{ title }}
       </b-button>
 
@@ -31,7 +31,7 @@
         </ul>
         <template v-else>
           <Tree v-for="(child, i) in shownChilds" :key="i" :item="child" :parent="stac" :path="path" />
-          <b-button class="show-more" v-if="hasMore" variant="light" @click="showMore" v-visible.300="showMore">{{ $t('showMore') }}</b-button>
+          <b-button class="show-more" v-if="hasMore" variant="light" @click="showMore" v-b-visible.300="showMore">{{ $t('showMore') }}</b-button>
         </template>
       </template>
     </li>
@@ -39,14 +39,20 @@
 </template>
 
 <script>
+import { BIconFileEarmarkRichtext, BIconFolderMinus, BIconFolderPlus, BIconThreeDots } from "bootstrap-vue";
 import { mapGetters, mapState } from 'vuex';
-import { isObject } from 'stac-js/src/utils.js';
-import { toAbsolute } from 'stac-js/src/http.js';
-import { getDisplayTitle, Collection } from '../models/stac';
-import { STAC } from 'stac-js';
+import Utils from '../utils';
+import { getDisplayTitle } from '../models/stac';
+import { STAC, CatalogLike } from 'stac-js';
 
 export default {
   name: 'Tree',
+  components: {
+    BIconFileEarmarkRichtext,
+    BIconFolderMinus,
+    BIconFolderPlus,
+    BIconThreeDots
+  },
   props: {
     item: {
       type: Object,
@@ -104,9 +110,9 @@ export default {
           return null;
         }
       }
-      else if (isObject(this.item) && typeof this.item.href === 'string') {
+      else if (Utils.isObject(this.item) && typeof this.item.href === 'string') {
         if (this.parent) {
-          return toAbsolute(this.item.href, this.parent.getAbsoluteUrl());
+          return Utils.toAbsolute(this.item.href, this.parent.getAbsoluteUrl());
         }
         else {
           return this.item.href;
@@ -177,10 +183,10 @@ export default {
     stac: {
       immediate: true,
       handler(newStac, oldStac) {
-        if (newStac instanceof Collection) {
+        if (newStac instanceof STAC) {
           newStac.setApiDataListener('tree', () => this.updateChilds());
         }
-        if (oldStac instanceof Collection) {
+        if (oldStac instanceof STAC) {
           oldStac.setApiDataListener('tree');
         }
         this.updateChilds();
@@ -194,7 +200,7 @@ export default {
   },
   methods: {
     updateChilds() {
-      if (this.stac && this.stac.isCatalogLike()) {
+      if (this.stac instanceof CatalogLike) {
         this.childs = this.stac.getChildren(this.apiCatalogPriority);
       }
       else {
