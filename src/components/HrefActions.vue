@@ -52,7 +52,10 @@ import { browserProtocols } from 'stac-js/src/http';
 
 export const noDownloadMediaTypes = [
   "application/vnd+zarr",
-  "application/vnd+zarr; version=2; profile=multiscales"
+  "application/vnd+zarr; version=2; profile=multiscales",
+  "application/vnd.zarr",
+  "application/vnd.zarr; version=3",
+  "application/vnd.zarr; version=3; profile=multiscales",
 ];
 
 let i = 0;
